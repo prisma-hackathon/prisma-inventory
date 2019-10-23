@@ -1,0 +1,321 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "stepType": "CreateModel",
+      "name": "Item",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateModel",
+      "name": "Invoice",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateModel",
+      "name": "ItemType",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateModel",
+      "name": "Room",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Item",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Item",
+      "name": "createdAt",
+      "type": {
+        "Base": "DateTime"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "default": {
+        "Expression": [
+          "now",
+          "DateTime",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Item",
+      "name": "updatedAt",
+      "type": {
+        "Base": "DateTime"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Item",
+      "name": "purchaseDate",
+      "type": {
+        "Base": "DateTime"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Item",
+      "name": "name",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Item",
+      "name": "type",
+      "type": {
+        "Relation": {
+          "to": "ItemType",
+          "to_fields": [
+            "id"
+          ],
+          "name": "ItemToItemType",
+          "on_delete": "None"
+        }
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Item",
+      "name": "locatedIn",
+      "type": {
+        "Relation": {
+          "to": "Room",
+          "to_fields": [
+            "id"
+          ],
+          "name": "ItemToRoom",
+          "on_delete": "None"
+        }
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Item",
+      "name": "invoice",
+      "type": {
+        "Relation": {
+          "to": "Invoice",
+          "to_fields": [
+            "id"
+          ],
+          "name": "InvoiceToItem",
+          "on_delete": "None"
+        }
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Item",
+      "name": "price",
+      "type": {
+        "Base": "Float"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Invoice",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Invoice",
+      "name": "date",
+      "type": {
+        "Base": "DateTime"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Invoice",
+      "name": "items",
+      "type": {
+        "Relation": {
+          "to": "Item",
+          "to_fields": [],
+          "name": "InvoiceToItem",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "ItemType",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "ItemType",
+      "name": "name",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "ItemType",
+      "name": "items",
+      "type": {
+        "Relation": {
+          "to": "Item",
+          "to_fields": [],
+          "name": "ItemToItemType",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Room",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Room",
+      "name": "name",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Room",
+      "name": "items",
+      "type": {
+        "Relation": {
+          "to": "Item",
+          "to_fields": [],
+          "name": "ItemToRoom",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Room",
+      "name": "floor",
+      "type": {
+        "Enum": "Floor"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Room",
+      "name": "meetingRoom",
+      "type": {
+        "Base": "Boolean"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateEnum",
+      "name": "Floor",
+      "values": [
+        "GROUND",
+        "FIRST",
+        "EXECUTIVE"
+      ]
+    }
+  ]
+}
